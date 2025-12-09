@@ -28,7 +28,12 @@ const Header: React.FC = () => {
             <>
               <Link to="/dashboard" className="nav-link">Dashboard</Link>
               
-              {/* PERBAIKAN: Shipping planner bisa melihat orders */}
+              {/* AI Dashboard untuk kedua role */}
+              <Link to="/ai-dashboard" className="nav-link">
+                <ICONS.DASHBOARD size={16} /> AI Dashboard
+              </Link>
+              
+              {/* Shipping planner bisa melihat orders */}
               {user?.role === 'shipping_planner' && (
                 <Link to="/orders" className="nav-link">All Orders</Link>
               )}
