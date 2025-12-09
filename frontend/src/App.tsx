@@ -1,4 +1,4 @@
-//App.tsx
+// App.tsx - UPDATE
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from '@/contexts/AuthContext';
@@ -13,6 +13,7 @@ const Dashboard = React.lazy(() => import('@/pages/Dashboard'));
 const Orders = React.lazy(() => import('@/pages/Orders'));
 const Schedules = React.lazy(() => import('@/pages/Schedules'));
 const Profile = React.lazy(() => import('@/pages/Profile'));
+const AIDashboard = React.lazy(() => import('@/pages/AIDashboard')); // NEW
 
 function App() {
   return (
@@ -37,7 +38,14 @@ function App() {
                 </ProtectedRoute>
               } />
               
-              {/* PERBAIKAN: Orders bisa diakses oleh kedua role */}
+              {/* AI Dashboard untuk kedua role */}
+              <Route path="/ai-dashboard" element={
+                <ProtectedRoute allowedRoles={['mine_planner', 'shipping_planner']}>
+                  <AIDashboard />
+                </ProtectedRoute>
+              } />
+              
+              {/* Orders bisa diakses oleh kedua role */}
               <Route path="/orders" element={
                 <ProtectedRoute allowedRoles={['mine_planner', 'shipping_planner']}>
                   <Orders />
